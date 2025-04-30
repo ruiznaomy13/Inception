@@ -1,10 +1,32 @@
+version: '3.1'
+
 services:
   nginx:
+    image: nginx
+    container_name: nginx
     build: ./requirements/nginx/
     ports:
       - 1403:80
+    restart: always
   wordpress:
+    image: wordpress
+    container_name: wordpress
     build: ./requirements/wordpress/
+    ports:
+      - 9890:80
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppassword
+      WORDPRESS_DB_NAME: wpdb
+    restart: always
   mariadb:
+    # image: mariadb
     build: ./requirements/mariadb/
-
+    # container_name: mariadb
+    # restart: always
+    # environment:
+      # MYSQL_ROOT_PASSWORD: rootpassword
+      # MYSQL_DATABASE: wpdb
+      # MYSQL_USER: wpuser
+      # MYSQL_PASSWORD: wppassword
