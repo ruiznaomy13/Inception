@@ -1,0 +1,10 @@
+services:
+  nginx:
+    build: ./requirements/nginx/
+    ports:
+      - 1403:80
+  wordpress:
+    build: ./requirements/wordpress/
+  mariadb:
+    build: ./requirements/mariadb/
+
