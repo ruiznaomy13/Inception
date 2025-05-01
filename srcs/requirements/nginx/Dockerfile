@@ -5,13 +5,11 @@ RUN set -x \
 	&& adduser -S -D -H -u 101 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx \
 	&& apk add --no-cache nginx
 
-EXPOSE 80
-
-COPY tools/entrypoint.sh /
-RUN chmod +x /entrypoint.sh
+COPY --chmod=755 tools/entrypoint.sh /
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 80
 
+CMD ["nginx", "-g", "daemon off;"]
 

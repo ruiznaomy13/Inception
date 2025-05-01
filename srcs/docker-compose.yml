@@ -7,7 +7,7 @@ services:
     build: ./requirements/nginx/
     ports:
       - 1403:80
-    restart: always
+    restart: on-failure
   wordpress:
     image: wordpress
     container_name: wordpress
@@ -19,7 +19,7 @@ services:
       WORDPRESS_DB_USER: wpuser
       WORDPRESS_DB_PASSWORD: wppassword
       WORDPRESS_DB_NAME: wpdb
-    restart: always
+    restart: on-failure 
   mariadb:
     # image: mariadb
     build: ./requirements/mariadb/
