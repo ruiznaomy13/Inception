@@ -6,7 +6,7 @@ services:
     container_name: nginx
     build: ./requirements/nginx/
     ports:
-      - 1403:80
+      - 443:443
     restart: on-failure
   wordpress:
     image: wordpress
