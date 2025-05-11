@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [$1 = "mariadbd"]; then
+if [ $1 = "mariadbd" ]; then
 
 	if [ -d "/run/mysqld" ]; then
 		echo "[i] mysqld already present, skipping creation"
