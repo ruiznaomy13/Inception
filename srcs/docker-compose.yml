@@ -8,7 +8,6 @@ services:
     restart: on-failure
     
   wordpress:
-    # image: demyx/wordpress
     build: ./requirements/wordpress/
     volumes:
       - wp_vol:/var/www/html
@@ -21,7 +20,6 @@ services:
     restart: on-failure
 
   mariadb:
-    # image: yobasystems/alpine-mariadb
     build: ./requirements/mariadb/
     environment:
       MYSQL_DATABASE: ${DB_NAME}
@@ -30,5 +28,16 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     restart: on-failure
   
-volumes:
-  wp_vol:
+  volumes:
+    db_vol:
+      driver: local
+      driver_opts:
+        type: none
+        device: /home/ncastell/data/db_vol
+        o: bind
+    wp_vol:
+      driver: local
+      driver_opts:
+        type: none
+        device: /home/ncastell/data/wp_vol
+        o: bind
