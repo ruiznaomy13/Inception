@@ -21,6 +21,8 @@ services:
 
   mariadb:
     build: ./requirements/mariadb/
+    volumes:
+      - db_vol:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
@@ -28,7 +30,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     restart: on-failure
   
-  volumes:
+volumes:
     db_vol:
       driver: local
       driver_opts:
